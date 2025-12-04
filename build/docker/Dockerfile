@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=compiler
+ARG BASE_IMAGE=falkordb/falkordb-compiler
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -7,7 +7,7 @@ ARG BROWSER_TAG=latest
 FROM $BASE_IMAGE AS compiler
 
 #FROM falkordb/falkordb-browser:$BROWSER_TAG AS browser
-FROM muhammadqadora/browser-test:1.0 AS browser
+FROM falkordb/falkordb-browser:$BROWSER_TAG AS browser
 
 FROM redis:8.2.2
 
@@ -68,13 +68,7 @@ ENV BROWSER=1
 ENV REST_PORT=8080
 ENV MCP_PORT=3001
 ENV PORT=3000
-ENV CYPHER=0
-ENV CHAT_URL=http://localhost:8080/
-ENV NEXTAUTH_URL=http://localhost:3000/
-ENV NEXTAUTH_SECRET=SECRET
-ENV NEXT_PUBLIC_GOOGLE_ANALYTICS=ANALYTICS
-ENV DEFAULT_MODEL=gpt-4o-mini
-ENV DEFAULT_KEY=""
+ENV CYPHER=1
 
 EXPOSE 6379/tcp 3001/tcp 8080/tcp 3000/tcp
 
